@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/ilog.service";
+import ILogDataService from "../services/ilog.service";
 import { withRouter } from '../common/with-router';
 
 
@@ -56,7 +56,7 @@ class Data extends Component {
   //const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}]
   constructor(props) {
     super(props);
-    this.x = "some string"
+    this.x = "Data caption"
   }
 
   render() {

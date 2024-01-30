@@ -71,7 +71,7 @@ export default class AddRecord extends Component {
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newTutorial}>
+            <button className="btn btn-success" onClick={this.newRecord}>
               Add
             </button>
           </div>
@@ -103,7 +103,7 @@ export default class AddRecord extends Component {
               />
             </div>
 
-            <button onClick={this.saveTutorial} className="btn btn-success">
+            <button onClick={this.saveRecord} className="btn btn-success">
               Submit
             </button>
           </div>

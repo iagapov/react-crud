@@ -5,9 +5,9 @@ import "./App.css";
 
 import { Routes, Route, Link } from "react-router-dom";
 
-import AddTutorial from "./components/add-tutorial.component";
-import Tutorial from "./components/tutorial.component";
-import LogssList from "./components/tutorials-list.component";
+import AddRecord from "./components/add-record.component";
+import Record from "./components/record.component";
+import RecordsList from "./components/records-list.component";
 import Data from "./components/data.component";
 //import DataList from "./components/data.component";
 
@@ -22,7 +22,7 @@ class App extends Component {
           </a>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={"/tutorials"} className="nav-link">
+              <Link to={"/records"} className="nav-link">
                 Logbook Entries
               </Link>
             </li>
@@ -41,13 +41,14 @@ class App extends Component {
 
         <div className="container mt-3">
           <Routes>
-            <Route path="/" element={<LogsList/>} />
-            <Route path="/logs" element={<LogsList/>} />
+            <Route path="/" element={<RecordsList/>} />
+            <Route path="/records" element={<RecordsList/>} />
             <Route path="/data" element={<Data/>} />
-            <Route path="/add" element={<AddLog/>} />
-            <Route path="/tutorials/:id" element={<Log/>} />
+            <Route path="/add" element={<AddRecord/>} />
+            <Route path="/records/:id" element={<Record/>} />
           </Routes>
         </div>
+
       </div>
     );
   }

@@ -2,31 +2,31 @@ import http from "../common/http-common";
 
 class ILogDataService {
   getAll() {
-    return http.get("/ilog");
+    return http.get("/records");
   }
 
   get(id) {
-    return http.get(`/ilog/${id}`);
+    return http.get(`/records/${id}`);
   }
 
   create(data) {
-    return http.post("/ilog", data);
+    return http.post("/records", data);
   }
 
   update(id, data) {
-    return http.put(`/ilog/${id}`, data);
+    return http.put(`/records/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/ilog/${id}`);
+    return http.delete(`/records/${id}`);
   }
 
   deleteAll() {
-    return http.delete(`/ilog`);
+    return http.delete(`/records`);
   }
 
   findByTitle(title) {
-    return http.get(`/ilog?title=${title}`);
+    return http.get(`/records?title=${title}`);
   }
 }
 

@@ -1,27 +1,27 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/ilog.service";
+import ILogDataService from "../services/ilog.service";
 import { Link } from "react-router-dom";
 
-export default class LogsList extends Component {
+export default class RecordsList extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
-    this.retrieveTutorials = this.retrieveTutorials.bind(this);
+    this.retrieveRecords = this.retrieveRecords.bind(this);
     this.refreshList = this.refreshList.bind(this);
-    this.setActiveTutorial = this.setActiveTutorial.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
+    this.setActiveRecord = this.setActiveRecord.bind(this);
+    this.removeAllRecords = this.removeAllRecords.bind(this);
     this.searchTitle = this.searchTitle.bind(this);
 
     this.state = {
-      tutorials: [],
-      currentTutorial: null,
+      records: [],
+      currentRecord: null,
       currentIndex: -1,
       searchTitle: ""
     };
   }
 
   componentDidMount() {
-    this.retrieveTutorials();
+    this.retrieveRecords();
   }
 
   onChangeSearchTitle(e) {
@@ -32,11 +32,11 @@ export default class LogsList extends Component {
     });
   }
 
-  retrieveTutorials() {
+  retrieveRecords() {
     ILogDataService.getAll()
       .then(response => {
         this.setState({
-          tutorials: response.data
+          records: response.data
         });
         console.log(response.data);
       })
@@ -46,21 +46,21 @@ export default class LogsList extends Component {
   }
 
   refreshList() {
-    this.retrieveTutorials();
+    this.retrieveRecords();
     this.setState({
-      currentTutorial: null,
+      currentRecord: null,
       currentIndex: -1
     });
   }
 
-  setActiveTutorial(tutorial, index) {
+  setActiveRecord(record, index) {
     this.setState({
-      currentTutorial: tutorial,
+      currentRecord: record,
       currentIndex: index
     });
   }
 
-  removeAllTutorials() {
+  removeAllRecords() {
     ILogDataService.deleteAll()
       .then(response => {
         console.log(response.data);
@@ -75,7 +75,7 @@ export default class LogsList extends Component {
     ILogDataService.findByTitle(this.state.searchTitle)
       .then(response => {
         this.setState({
-          tutorials: response.data
+          records: response.data
         });
         console.log(response.data);
       })
@@ -85,7 +85,7 @@ export default class LogsList extends Component {
   }
 
   render() {
-    const { searchTitle, tutorials, currentTutorial, currentIndex } = this.state;
+    const { searchTitle, records, currentRecord, currentIndex } = this.state;
 
     return (
       <div className="list row">
@@ -110,56 +110,56 @@ export default class LogsList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tutorials List</h4>
+          <h4>Records List</h4>
 
           <ul className="list-group">
-            {tutorials &&
-              tutorials.map((tutorial, index) => (
+            {records &&
+              records.map((record, index) => (
                 <li
                   className={
                     "list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveTutorial(tutorial, index)}
+                  onClick={() => this.setActiveRecord(record, index)}
                   key={index}
                 >
-                  {tutorial.title}
+                  {record.title}
                 </li>
               ))}
           </ul>
 
           <button
             className="m-3 btn btn-sm btn-danger"
-            onClick={this.removeAllTutorials}
+            onClick={this.removeAllRecords}
           >
             Remove All
           </button>
         </div>
         <div className="col-md-6">
-          {currentTutorial ? (
+          {currentRecord ? (
             <div>
-              <h4>Tutorial</h4>
+              <h4>Record</h4>
               <div>
                 <label>
                   <strong>Title:</strong>
                 </label>{" "}
-                {currentTutorial.title}
+                {currentRecord.title}
               </div>
               <div>
                 <label>
                   <strong>Description:</strong>
                 </label>{" "}
-                {currentTutorial.description}
+                {currentRecord.description}
               </div>
               <div>
                 <label>
                   <strong>Status:</strong>
                 </label>{" "}
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currentRecord.published ? "Published" : "Pending"}
               </div>
 
               <Link
-                to={"/tutorials/" + currentTutorial.id}
+                to={"/records/" + currentRecord.id}
                 className="btn btn-primary"
               >
                 Edit
@@ -168,7 +168,7 @@ export default class LogsList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorial...</p>
+              <p>Please click on a Record...</p>
             </div>
           )}
         </div>
