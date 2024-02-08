@@ -65,9 +65,11 @@ export default class AddRecord extends Component {
     });
   }
 
+  
+
   render() {
     return (
-      <div className="submit-form">
+      <div>
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
@@ -76,7 +78,7 @@ export default class AddRecord extends Component {
             </button>
           </div>
         ) : (
-          <div>
+          <div className="mb-3">
             <div className="form-group">
               <label htmlFor="title">Title</label>
               <input
@@ -92,15 +94,7 @@ export default class AddRecord extends Component {
 
             <div className="form-group">
               <label htmlFor="description">Description</label>
-              <input
-                type="text"
-                className="form-control"
-                id="description"
-                required
-                value={this.state.description}
-                onChange={this.onChangeDescription}
-                name="description"
-              />
+              <textarea id="description" value={this.state.description} onChange={this.onChangeDescription} rows="20" cols="150"></textarea>
             </div>
 
             <button onClick={this.saveRecord} className="btn btn-success">

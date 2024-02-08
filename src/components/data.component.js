@@ -57,15 +57,44 @@ class Data extends Component {
   constructor(props) {
     super(props);
     this.x = "Data caption"
+    this.state = {
+      currentRecord: {
+        id: null,
+        title: "",
+        description: "",
+        published: false
+      },
+      message: ""
+    };
+  }
+
+  componentDidMount() {
+    //this.getRecord(this.props.router.params.id);
   }
 
   render() {
     return (
-    <div className="plot">
-    <h1 class="h2">Data {this.x}</h1>
-    <LineChart width={400} height={400} data={data}>
-    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-    </LineChart>
+    <div class="row plot">
+      <div class="col">
+      <h1 class="h2">Data {this.x}</h1>
+      <LineChart width={400} height={400} data={data}>
+        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+      </LineChart>
+      </div>
+      <div class="col">
+      <h1 class="h2">Data {this.x}</h1>
+      <LineChart width={400} height={400} data={data}>
+      <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+      </LineChart>
+      </div>
+      <div class="col">
+      <h1 class="h2">Data {this.x}</h1>
+      <LineChart width={400} height={400} data={data}>
+      <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+      </LineChart>
+      </div>
+
     </div>
     );
   }

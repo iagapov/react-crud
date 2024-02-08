@@ -28,6 +28,11 @@ class ILogDataService {
   findByTitle(title) {
     return http.get(`/records?title=${title}`);
   }
+
+  getAllData() {
+    return http.get("/data");
+  }
+
 }
 
 export default new ILogDataService();
